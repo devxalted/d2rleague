@@ -1,91 +1,96 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from './page.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+const classNames = (...classes) => {
+  return classes.filter(Boolean).join(' ')
 }
+
+import { CheckCircleIcon, ChevronRightIcon, EnvelopeIcon } from '@heroicons/react/20/solid'
+
+const duelers = [
+    {
+        username: '',
+        jsp:'',
+        discord: '',
+        character: '',
+    },
+    {
+
+    },
+    // {
+    //     applicant: {
+    //         name: 'Ted Fox',
+    //         email: 'ted.fox@example.com',
+    //         imageUrl:
+    //             'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    //     },
+    //     date: '2020-01-07',
+    //     dateFull: 'January 7, 2020',
+    //     stage: 'Completed phone screening',
+    //     href: '#',
+    // },
+]
+
+export default function Example() {
+    return (
+        <div className="overflow-hidden bg-white shadow sm:rounded-md">
+
+            <ul role="list" className="divide-y divide-gray-200">
+
+                {duelers.map((application) => (
+                    <li key={application.applicant.email}>
+
+                        <a href={application.href} className="block hover:bg-gray-50">
+
+                            <div className="flex items-center px-4 py-4 sm:px-6">
+
+                                <div className="flex min-w-0 flex-1 items-center">
+
+                                    <div className="flex-shrink-0">
+                                        <img className="h-12 w-12 rounded-full" src={application.applicant.imageUrl} alt="" />
+                                    </div>
+
+                                    <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+
+                                        <div>
+                                            <p className="truncate text-sm font-medium text-indigo-600">{application.applicant.name}</p>
+                                            <p className="mt-2 flex items-center text-sm text-gray-500">
+                                                <EnvelopeIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                                <span className="truncate">{application.applicant.email}</span>
+                                            </p>
+                                        </div>
+
+                                        <div className="hidden md:block">
+
+                                            <div>
+                                                <p className="text-sm text-gray-900">
+                                                    Applied on <time dateTime={application.date}>{application.dateFull}</time>
+                                                </p>
+                                                <p className="mt-2 flex items-center text-sm text-gray-500">
+                                                    <CheckCircleIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400" aria-hidden="true" />
+                                                    {application.stage}
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <ChevronRightIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+                ))}
+
+            </ul>
+
+        </div>
+    )
+}
+
